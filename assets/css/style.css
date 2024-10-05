@@ -1,0 +1,107 @@
+/* Form styling */
+body {
+    margin: 0;
+}
+
+.filter, .search {
+    display: inline-block;
+    margin-bottom: 5px;
+    min-height: 43px;
+}
+
+.sel {
+    max-width: 80%;
+    display: inline-block;
+    max-height: 43px;
+}
+
+/* Card styling */
+.card {
+    align-items: center;
+    text-align: center;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    height: 100%; /* Set a fixed height for consistent card areas */
+}
+
+.card-title {
+    font-size: 18px;
+    margin-bottom: 0.5rem;
+}
+
+.card-text {
+    font-size: 14px;
+    color: #555;
+}
+
+.card-img-top {
+    height: 200px; /* Adjust the height as needed */
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .col-xl-3 {
+        flex-basis: 50%;
+    }
+}
+
+
+
+/* Form input and button */
+.form-control {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+
+
+/* Product details */
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+h5 {
+    font-size: 1rem;
+    color: #555;
+}
+
+p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #333;
+}
+
+
+
+/* Input fields */
+input[type="email"],
+input[type="password"] {
+    min-width: 80%;
+    max-height: 43px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    display: inline;
+}
+
+
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* General button and input styling */
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: 100%;
+}
+

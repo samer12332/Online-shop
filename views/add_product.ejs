@@ -1,0 +1,48 @@
+<%- include('./parts/header.ejs') %>
+<%- include('./parts/navbar.ejs') %>
+
+<div class="container text-center">
+    <h3>Add Product</h3>
+    <form action="/admin/add" method="post" enctype="multipart/form-data">
+        <input type="text" class="form-control" name="name" placeholder="Name" required>
+        <% let nameError = validationErrors.find(err => err.param === 'name') %>
+        <% if (nameError) { %>
+                <p class="alert alert-danger">
+                    <%= nameError.msg %>
+                </p>
+        <% } %>
+
+        <input type="number" class="form-control" name="price" placeholder="Price" required>
+        <% let priceError = validationErrors.find(err => err.param === 'price') %>
+        <% if (priceError) { %>
+                <p class="alert alert-danger">
+                    <%= priceError.msg %>
+                </p>
+        <% } %>
+
+        <textarea class="form-control" name="description" placeholder="Description" required></textarea>
+        <% let descriptionError = validationErrors.find(err => err.param === 'description') %>
+        <% if (descriptionError) { %>
+                <p class="alert alert-danger">
+                    <%= descriptionError.msg %>
+                </p>
+        <% } %>
+
+        <select class="custom-select input-group mb-3 p-2"
+            id="inputGroupSelect01" name="category" required>
+            <option value="" selected>Choose a Category</option>
+            <option value="clothes">Clothes</option>
+            <option value="computers">Computers</option>
+            <option value="phones">Phones</option>
+        </select>
+        <input type="file" class="form-control" name="image" placeholder="Image" required>
+        <button type="submit" class="btn btn-primary">Add Product</button>
+    </form>
+</div>
+
+
+
+
+<%- include('./parts/footer.ejs') %>
+
+

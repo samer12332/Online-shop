@@ -1,0 +1,25 @@
+<%- include('parts/header.ejs') %>
+<%- include('parts/navbar.ejs') %>
+
+
+
+<div style="text-align: center;">
+    <form action="/orders" method="post">
+        <label for="address">Enter your address:</label>
+        <br>
+        <textarea id="address" name="address" rows="4" cols="50" required></textarea>
+        <br>
+        <% if (orders) { %>
+            <% orders.forEach(order => { %>
+                <input type="hidden" name="cartId" value="<%= order._id %>">
+            <% }); %>
+        <% } %>
+        
+        <button type="submit" class="btn btn-success">Order</button>
+    </form>
+</div>
+
+
+
+
+<%- include('parts/footer.ejs') %>

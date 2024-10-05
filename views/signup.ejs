@@ -1,0 +1,53 @@
+<%- include('parts/header.ejs') %>
+<%- include('parts/navbar.ejs') %>
+
+<div class="container text-center">
+    <h3>Create Account</h3>
+    <form action="/signup" method="post">
+        <input type="text" class="form-control" name="username" placeholder="Username">
+        <% let usernameError = validationErrors.find(err => err.path == 'username') %>
+        <% if (usernameError) { %>
+            <p class="alert alert-danger">
+                <%= usernameError.msg %>
+            </p>
+        <% } %>
+        <input type="email" class="form-control" name="email" placeholder="E-mail">
+        <% let emailError = validationErrors.find(err => err.path == 'email') %>
+        <% if (usernameError) { %>
+            <p class="alert alert-danger">
+                <%= emailError.msg %>
+            </p>
+        <% } %>
+        <input type="password" class="form-control" name="password" placeholder="Password">
+        <% let passError = validationErrors.find(err => err.path == 'password') %>
+        <% if (passError) { %>
+            <p class="alert alert-danger">
+                <%= passError.msg %>
+            </p>
+        <% } %>
+        <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password">
+        <% let confirmError = validationErrors.find(err => err.path == 'confirmPassword') %>
+        <% if (confirmError) { %>
+            <p class="alert alert-danger">
+                <%= confirmError.msg %>
+            </p>
+        <% } %>
+        <input type="submit" value="Create Account" class="btn btn-primary">
+    </form>
+    <% if (authError) { %>
+        <br>
+        <p class="alert alert-danger">
+            <%= authError %>
+        </p>
+    <% } %>
+
+
+    <br>
+    <div>
+        Already have account ? <a href="/login">Login</a>
+    </div>
+</div>
+
+
+
+<%- include('parts/footer.ejs') %>

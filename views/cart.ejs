@@ -1,0 +1,60 @@
+<%- include('./parts/header.ejs') %>
+<%- include('./parts/navbar.ejs') %>
+
+<div class="container">
+    <% if (items == 0) { %>
+        <p class="alert alert-danger">
+            There is no items
+        </p>
+        <% } else { %>
+            <table  class="table table-hover">
+        <thead>
+            <td >no.</td>
+            <td >Product name</td>
+                <td >Price</td>
+                <td >Amount</td>
+                <td >Total</td>
+                <td ></td>
+            </thead>
+            <tbody>
+                <% for( let i = 0; i < items.length; i++ ) { %>
+                    <tr >
+                        <td ><%= i + 1 %></td>
+                        <td ><%= items[i].name %></td>
+                        <td ><%= items[i].price %> $</td>
+                        <form method="post">
+                            <td > <input type="text" name="amount" class="form-control" value="<%= items[i].amount %>"></td>
+                            <td ><%= items[i].price * items[i].amount %> $</td>
+                            <td style="padding: 5px;">
+                                <input type="hidden" name="cartId" value="<%= items[i]._id %>">
+                                <input type="hidden" name="productId" value="<%= items[i].productId %>">
+                                <input type="submit" class="btn btn-success" value="Save" formaction="/cart/save">
+                                <input type="submit" class="btn btn-success" value="Order" formaction="/cart/order">
+                                <input type="submit" class="btn btn-danger" value="Delete" formaction="/cart/delete">
+                            </td>
+                        </form>
+                    </tr>
+                <% } %>
+                
+            </tbody>
+        </table>
+    <% } %>
+    <% if (validationErrors) { %>
+            <p class="alert alert-danger">
+                <%= validationErrors.msg %>
+            </p>
+    <% } %>
+    <form method="post" style="bottom: 40px; right: 140px; position: fixed;"  >
+        <input type="submit" class="btn btn-success" value="Order All" formaction="/cart/orderAll" >
+    </form>
+    <form method="post" style="bottom: 40px; right: 40px; position: fixed;"  >
+        <input type="submit" class="btn btn-danger" value="Delete All" formaction="/cart/deleteAll" >
+    </form>
+</div>
+
+
+
+
+
+
+<%- include('./parts/footer.ejs') %>

@@ -1,0 +1,39 @@
+<%- include('parts/header') %>
+<%- include('parts/navbar') %>
+
+
+
+<div class="container">
+    <% if (product) { %>
+        <div class="row">
+            <div class="col col-12 col-md-6">
+                <img src="/<%= product.image %>">
+                <form action="/cart" method="post">
+                    <input type="number" name="amount" class="form-control">
+                    <input type="submit" value="Add to cart" class="btn btn-primary">
+                    <input type="hidden" name="name" value="<%= product.name %>">
+                    <input type="hidden" name="price" value="<%= product.price %>">
+                    <input type="hidden" name="productId" value="<%= product._id %>">
+                    <input type="hidden" name="redirectTo" value="/product">
+                </form>
+                <% if (validationError) { %>
+                    <p class="alert alert-danger">
+                        <%= validationError.msg %>
+                    </p>
+                <% } %>
+            </div>
+            <div class="col col-12 col-md-6">
+                <h3><%= product.name %></h3>
+                <h5>Price: <%= product.price %> $</h5>
+                <p><%= product.description %></p>
+            </div>
+        </div>
+    <% } else { %>
+        <div class="alert alert-danger">
+            there is no product matches this id
+        </div>
+<% } %>
+</div>
+
+<%- include('parts/footer') %>
+

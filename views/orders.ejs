@@ -1,0 +1,79 @@
+<%- include('./parts/header.ejs') %>
+<%- include('./parts/navbar.ejs') %>
+
+<div class="container">
+    <% if (orders.length == 0) { %>
+        <p class="alert alert-danger">
+            There is no Orders
+        </p>
+    <% } else { %>
+        <table class="table table-hover">
+            <thead >
+                <td  >no.</td>
+                <td >Product name</td>
+                <td >Amount</td>
+                <td >Cost</td>
+                <td >Address</td>
+                <td >Status</td>
+                <td >Time</td>
+                
+                <td ></td>
+            </thead>
+            <tbody>
+                <% for( let i = 0; i < orders.length; i++ ) { %>
+                    <tr >
+                        <td ><%= i + 1 %></td>
+                        <td ><%= orders[i].name %></td>
+                        
+                            <% if (orders[i].status == 'pending') { %>
+                                <form action="/orders/save" method="post">
+                                    <td >
+                                        <input type="text" name="amount" class="form-control" value="<%= orders[i].amount %>">
+                                        <input type="submit" class="btn btn-success" value="Save">
+                                        <input type="hidden" name="orderId" value="<%= orders[i]._id %>">
+                                        <input type="hidden" name="cartId" value="<%= orders[i].cartId %>">
+                                    </td>
+                                </form>
+                                
+                            <% } else { %>
+                                <td ><%= orders[i].amount %> </td>
+                            <% } %>
+                        <td ><%= orders[i].cost %> $ </td>
+                        <td ><%= orders[i].address %> </td>
+                        <td ><%= orders[i].status %> </td>
+                        <td ><%= orders[i].time %> </td>
+                        <% if (orders[i].status == 'pending') { %>
+                            <form method="post">
+                                <td style="padding: 5px;">
+                                    <input type="hidden" name="orderId" value="<%= orders[i]._id %>">
+                                    <input type="hidden" name="productId" value="<%= orders[i].productId %>">
+                                    <input type="hidden" name="cartId" value="<%= orders[i].cartId %>">
+                                    <!-- <input type="submit" class="btn btn-success" value="Order" formaction="/cart/order"> -->
+                                    <input type="submit" class="btn btn-danger" value="Cancel" formaction="/orders/cancel">
+                                </td>
+                            </form>
+                        <% } %>
+                        
+                    </tr>
+                <% } %>
+                
+            </tbody>
+        </table>
+    <% } %>
+    <% if (validationErrors) { %>
+            <p class="alert alert-danger">
+                <%= validationErrors.msg %>
+            </p>
+    <% } %>
+    <form method="post" style="bottom: 40px; right: 40px; position: fixed;"  >
+        <!-- <input type="submit" class="btn btn-success" value="Order" formaction="/cart/verify"> -->
+        <input type="submit" class="btn btn-danger" value="Cancel All" formaction="/orders/cancelAll" >
+    </form>
+</div>
+
+
+
+
+
+
+<%- include('./parts/footer.ejs') %>
